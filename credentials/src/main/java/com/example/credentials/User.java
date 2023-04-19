@@ -6,12 +6,12 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "credentials")
-public class User implements Serializable {
+public class User  {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    @Column(name = "account-type")
+    @Column(name = "`account-type`")
     private String accountType;
 
     @Column(name = "email")

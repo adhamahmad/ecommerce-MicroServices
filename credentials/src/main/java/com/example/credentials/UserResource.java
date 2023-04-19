@@ -12,7 +12,7 @@ import jakarta.ws.rs.core.Response;
 public class UserResource {
 
     @EJB
-    private UserRepository userRepository;
+    private UserRepository userRepository = new UserRepository();
 
     @POST
     @Path("/register")

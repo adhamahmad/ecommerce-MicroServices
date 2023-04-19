@@ -12,12 +12,6 @@ public class HelloServlet extends HttpServlet {
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<form action=\"/credentials-1.0-SNAPSHOT/api/users/register\" method=\"POST\">\n" +
-                "  <label for=\"account-type\">Account Type:</label>\n" +
-                "  <select id=\"account-type\" name=\"account-type\">\n" +
-                "    <option value=\"admin\">Admin</option>\n" +
-                "    <option value=\"customer\">Customer</option>\n" +
-                "  </select>\n" +
-                "  <br>\n" +
                 "  <label for=\"email\">Email:</label>\n" +
                 "  <input id=\"email\" name=\"email\" type=\"email\" required>\n" +
                 "  <br>\n" +
