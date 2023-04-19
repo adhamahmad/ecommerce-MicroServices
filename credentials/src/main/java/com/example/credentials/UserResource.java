@@ -17,13 +17,13 @@ public class UserResource {
     @POST
     @Path("/register")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response registerUser(@FormParam("account-type") String accountType,
+    public Response registerUser(
                                  @FormParam("email") String email,
                                  @FormParam("password") String password) {
         User user = new User();
-        user.setAccountType(accountType);
         user.setEmail(email);
         user.setPassword(password);
+        user.setAccountType("customer");
         userRepository.createUser(user);
         return Response.status(Response.Status.CREATED).build();
     }
