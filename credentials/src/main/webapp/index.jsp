@@ -5,8 +5,10 @@
   <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %></h1>
+<h1><%= "buy2buy" %></h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="signup-servlet">Signup</a>
+<br/>
+<a href="login-servlet">login</a>
 </body>
 </html>

@@ -3,6 +3,9 @@ package com.example.credentials;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 @Stateless
 public class UserRepository {
@@ -12,6 +15,22 @@ public class UserRepository {
 
     public void createUser(User user) {
         entityManager.persist(user);
+    }
+
+    public boolean login(String email, String password,String accountType) {
+        List<User> result;
+        TypedQuery<User> query = entityManager.createQuery("Select c from User C", User.class);
+        result = query.getResultList();
+        for(User user:result) {
+            if(user.getEmail().equals(email)) {
+                if(user.getPassword().equals(password)) {
+                    if(user.getAccountType().equals(accountType)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public User readUser(int id) {
