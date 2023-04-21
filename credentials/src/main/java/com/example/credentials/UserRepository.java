@@ -1,5 +1,6 @@
 package com.example.credentials;
 
+import jakarta.ejb.Singleton;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -7,7 +8,7 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
-@Stateless
+@Singleton
 public class UserRepository {
 
     @PersistenceContext(unitName = "buy2buy-cred")

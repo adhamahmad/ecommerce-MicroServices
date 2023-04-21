@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.example</groupId>
-  <artifactId>credentials</artifactId>
+  <artifactId>shipping</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>credentials</name>
+  <name>shipping</name>
   <packaging>war</packaging>
 
   <properties>
@@ -36,22 +36,11 @@
       <scope>test</scope>
     </dependency>
       <dependency>
-          <groupId>org.json</groupId>
-          <artifactId>json</artifactId>
-          <version>20200518</version>
-      </dependency>
-      <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
         <version>${junit.version}</version>
         <scope>test</scope>
-      </dependency>
-      <dependency>
-          <groupId>com.squareup.okhttp3</groupId>
-          <artifactId>okhttp</artifactId>
-          <version>4.10.0</version>
-      </dependency>
-  </dependencies>
+      </dependency>      </dependencies>
 
   <build>
         <plugins>

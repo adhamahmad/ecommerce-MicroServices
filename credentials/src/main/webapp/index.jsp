@@ -7,7 +7,9 @@
 <body>
 <h1><%= "buy2buy" %></h1>
 <br/>
-<a href="signup-servlet">Signup</a>
+<a href="addSellingAccount-servlet">Add a selling account</a>
+<br/>
+<a href="addShippingAccount-servlet">Add a shipping account</a>
 <br/>
 <a href="login-servlet">login</a>
 </body>

@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
                 "  <label for=\"password\">Password:</label>\n" +
                 "  <input id=\"password\" name=\"password\" type=\"password\" required>\n" +
                 "  <br>\n" +
-                "  <button type=\"submit\">Register</button>\n" +
+                "  <button type=\"submit\">Login</button>\n" +
                 "</form>");
     }
 }
