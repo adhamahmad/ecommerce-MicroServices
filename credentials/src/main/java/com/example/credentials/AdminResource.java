@@ -56,7 +56,7 @@ public class AdminResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response registerUser(@FormParam("selling-name") String sellingName,
                                  @FormParam("email") String email
-                                 ) {
+                                 ) throws IOException, InterruptedException {
         User user = new User();
         user.setEmail(email);
         String password = sellingName+email; // auto generate password
@@ -67,16 +67,20 @@ public class AdminResource {
         }
         catch (Exception e){
             //didn't create the user (duplicate emails)
-            URI uri = URI.create("http://localhost:8080/credentials-1.0-SNAPSHOT/signup-servlet");
+            URI uri = URI.create("http://localhost:8080/credentials-1.0-SNAPSHOT/addSellingAccount-servlet");
             return Response.seeOther(uri).build();
         }
-        // Create a new JSON object
-        JSONObject jsonObject = new JSONObject();
-        // Add the two string variables to the JSON object
-        jsonObject.put("selling-name", sellingName);
-        jsonObject.put("email", email);
-        //TODO call the selling api
-        return Response.accepted().build();
+        HttpClient httpClient = HttpClient.newBuilder().build();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:6082/product-1.0-SNAPSHOT/api/selling/register/"+sellingName+"/"+email))
+                .POST(HttpRequest.BodyPublishers.noBody())
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        if(!(response.statusCode() == 201)){ // didn't create
+            URI uri = URI.create("http://localhost:6082/product-1.0-SNAPSHOT/addSellingAccount-servlet");
+            return Response.seeOther(uri).build();
+        }
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @GET
