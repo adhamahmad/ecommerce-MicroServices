@@ -11,7 +11,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-
+import java.util.List;
 
 
 @Path("/admin")
@@ -37,13 +37,7 @@ public class AdminResource {
             URI uri = URI.create("http://localhost:8080/credentials-1.0-SNAPSHOT/addShippingAccount-servlet");
             return Response.seeOther(uri).build();
         }
-        // Create a new JSON object
-//        JSONObject jsonObject = new JSONObject();
-//        // Add the two string variables to the JSON object
-//        jsonObject.put("shipping-name", shippingName);
-//        jsonObject.put("email", email);
-//        jsonObject.put("supported-regions",supportedRegions);
-        //TODO call the shipping api
+
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:5090/shipping-1.0-SNAPSHOT/api/shipping/register/"+shippingName+"/"+email+"/"+supportedRegions))
@@ -83,5 +77,24 @@ public class AdminResource {
         jsonObject.put("email", email);
         //TODO call the selling api
         return Response.accepted().build();
+    }
+
+    @GET
+    @Path("/shipping")
+    public String getShippingAccounts() throws IOException, InterruptedException {
+        String url = "http://localhost:5090/shipping-1.0-SNAPSHOT/api/shipping/accounts";
+        HttpClient httpClient = HttpClient.newBuilder().build();
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create(url))
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        String responseBody = response.body();
+        List<User> credentials = userRepository.getCredentialsAccountType("shipping");
+        String email ="";
+        for (User user: credentials) {
+            email = user.getEmail();
+        }
+        return responseBody+" "+credentials;
     }
 }

@@ -11,6 +11,8 @@
 <br/>
 <a href="addShippingAccount-servlet">Add a shipping account</a>
 <br/>
+<a href="getShippingAccount-servlet">Get shipping accounts</a>
+<br/>
 <a href="login-servlet">login</a>
 </body>
 </html>
