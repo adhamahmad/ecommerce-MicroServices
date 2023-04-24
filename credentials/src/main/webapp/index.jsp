@@ -17,6 +17,8 @@
 <br/>
 <a href ="signup-servlet">Sign up</a>
 <br/>
+<a href="getCustomerAccount-servlet">Get customer accounts</a>
+<br />
 <a href="login-servlet">login</a>
 </body>
 </html>

@@ -1,10 +1,15 @@
 package com.example.order;
 
 import jakarta.ejb.EJB;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObjectBuilder;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
+import java.util.List;
 
 @Path("/user")
 public class UserResource {
@@ -31,5 +36,22 @@ public class UserResource {
             //didn't create the user (duplicate emails)
             return Response.status(Response.Status.CONFLICT).build();
         }
+    }
+
+    @GET
+    @Path("/accounts")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonArray getCustomerAccounts(){
+        List<User> users = orderRepository.getUsers();
+        JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
+        for (User user : users) {
+            JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+            jsonObjectBuilder.add("name", user.getName());
+            jsonObjectBuilder.add("email", user.getEmail());
+            jsonObjectBuilder.add("location", user.getLocation());
+            jsonArrayBuilder.add(jsonObjectBuilder.build());
+        }
+        JsonArray jsonArray = jsonArrayBuilder.build();
+        return  jsonArray;
     }
 }

@@ -114,4 +114,17 @@ public class AdminResource {
         String responseBody = response.body();
         return responseBody;
     }
+    @GET
+    @Path("/customer")
+    public String getCustomerAccounts() throws IOException, InterruptedException {
+        String url = "http://localhost:7082/order-1.0-SNAPSHOT/api/user/accounts";
+        HttpClient httpClient = HttpClient.newBuilder().build();
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create(url))
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        String responseBody = response.body();
+        return responseBody;
+    }
 }
