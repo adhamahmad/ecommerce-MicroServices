@@ -45,7 +45,7 @@ public class AdminResource {
                 .build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         if(!(response.statusCode() == 201)){ // didn't create
-            URI uri = URI.create("http://localhost:5090/credentials-1.0-SNAPSHOT/addShippingAccount-servlet");
+            URI uri = URI.create("http://localhost:8080/credentials-1.0-SNAPSHOT/addShippingAccount-servlet");
             return Response.seeOther(uri).build();
         }
         return Response.status(Response.Status.CREATED).build();
@@ -77,7 +77,7 @@ public class AdminResource {
                 .build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         if(!(response.statusCode() == 201)){ // didn't create
-            URI uri = URI.create("http://localhost:6082/product-1.0-SNAPSHOT/addSellingAccount-servlet");
+            URI uri = URI.create("http://localhost:8080/credentials-1.0-SNAPSHOT/addSellingAccount-servlet");
             return Response.seeOther(uri).build();
         }
         return Response.status(Response.Status.CREATED).build();

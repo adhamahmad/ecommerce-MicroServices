@@ -57,8 +57,21 @@ public class userResource {
                                   @FormParam("email") String email,
                                   @FormParam("password") String password){
             if(userRepository.login(email, password,accountType)) {
-                //TODO redirect based on account type
-                return Response.ok().build();
+                //redirect based on account type
+                switch (accountType) {
+                    case "customer":
+                        //TODO
+                        break;
+                    case "selling":
+                        //TODO
+                        break;
+                    case "shipping":
+                        //TODO
+                        break;
+                    default: //Admin
+                        URI uri = URI.create("http://localhost:8080/credentials-1.0-SNAPSHOT/adminHomepage-servlet");
+                        return Response.seeOther(uri).build();
+                }
             }
             //didn't login (incorrect info)
             URI uri = URI.create("http://localhost:8080/credentials-1.0-SNAPSHOT/login-servlet");
