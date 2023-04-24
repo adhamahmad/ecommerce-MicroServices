@@ -21,7 +21,7 @@ public class AdminResource {
     @POST
     @Path("/shipping")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response registerUser(@FormParam("shipping-name") String shippingName,
+    public Response registerShipping(@FormParam("shipping-name") String shippingName,
                                  @FormParam("email") String email,
                                  @FormParam("password") String password,
                                  @FormParam("supported-regions") String supportedRegions) throws IOException, InterruptedException {
@@ -54,7 +54,7 @@ public class AdminResource {
     @POST
     @Path("/selling")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response registerUser(@FormParam("selling-name") String sellingName,
+    public Response registerSelling(@FormParam("selling-name") String sellingName,
                                  @FormParam("email") String email
                                  ) throws IOException, InterruptedException {
         User user = new User();
@@ -83,6 +83,10 @@ public class AdminResource {
         return Response.status(Response.Status.CREATED).build();
     }
 
+
+
+
+
     @GET
     @Path("/shipping")
     public String getShippingAccounts() throws IOException, InterruptedException {
@@ -94,11 +98,20 @@ public class AdminResource {
                 .build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         String responseBody = response.body();
-        List<User> credentials = userRepository.getCredentialsAccountType("shipping");
-        String email ="";
-        for (User user: credentials) {
-            email = user.getEmail();
-        }
-        return responseBody+" "+credentials;
+        return responseBody;
+    }
+
+    @GET
+    @Path("/selling")
+    public String getSellingAccounts() throws IOException, InterruptedException {
+        String url = "http://localhost:6082/product-1.0-SNAPSHOT/api/selling/accounts";
+        HttpClient httpClient = HttpClient.newBuilder().build();
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create(url))
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        String responseBody = response.body();
+        return responseBody;
     }
 }

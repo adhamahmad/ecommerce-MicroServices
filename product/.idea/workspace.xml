@@ -10,26 +10,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80529b42-ecbb-464d-b0f3-2b7c5fee9667" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SellingRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SellingResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../credentials/src/main/java/com/example/credentials/GetSellingAccountServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/HelloServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/src/main/resources/META-INF/beans.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../credentials/src/main/java/com/example/credentials/AdminResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../credentials/src/main/java/com/example/credentials/AdminResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/product_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/product_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/REST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/REST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/SellingCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SellingCompany.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/SellingCompanyRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/SellingCompanyResource.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/beans.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../credentials/src/main/java/com/example/credentials/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../credentials/src/main/java/com/example/credentials/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../credentials/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../credentials/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/SellingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SellingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/SellingResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SellingResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +75,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -163,7 +168,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682128585640</updated>
-      <workItem from="1682128586676" duration="1839000" />
+      <workItem from="1682128586676" duration="6239000" />
     </task>
     <servers />
   </component>
@@ -180,5 +185,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

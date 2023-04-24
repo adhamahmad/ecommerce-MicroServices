@@ -13,6 +13,10 @@
 <br/>
 <a href="getShippingAccount-servlet">Get shipping accounts</a>
 <br/>
+<a href ="getSellingAccount-servlet">Get selling accounts</a>
+<br/>
+<a href ="signup-servlet">Sign up</a>
+<br/>
 <a href="login-servlet">login</a>
 </body>
 </html>

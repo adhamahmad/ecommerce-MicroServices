@@ -34,12 +34,12 @@ public class UserRepository {
         return false;
     }
 
-    public List<User> getCredentialsAccountType(String accountType) {
-        TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User U WHERE u.accountType = :accountType ", User.class);
-        query.setParameter("accountType", accountType);
-        List<User> credentials = query.getResultList();
-        return credentials;
-    }
+//    public List<User> getCredentialsAccountType(String accountType) {
+//        TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User U WHERE u.accountType = :accountType ", User.class);
+//        query.setParameter("accountType", accountType);
+//        List<User> credentials = query.getResultList();
+//        return credentials;
+//    }
 
     public User readUser(int id) {
         return entityManager.find(User.class, id);
