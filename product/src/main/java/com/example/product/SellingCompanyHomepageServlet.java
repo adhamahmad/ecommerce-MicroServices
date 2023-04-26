@@ -20,6 +20,7 @@ public class SellingCompanyHomepageServlet extends HttpServlet {
         out.println("<p>Please choose one of the following options:</p>");
         out.println("<ul>");
         out.println("<li><a href=\"" + request.getContextPath() + "/yourProducts-servlet?sellingName=" + sellingName + "\">View your products</a></li>");
+        out.println("<li><a href=\"" + request.getContextPath() + "/newProduct-servlet?sellingName=" + sellingName + "\">Add a new product</a></li>");
         out.println("</ul>");
         out.println("</body>");
         out.println("</html>");

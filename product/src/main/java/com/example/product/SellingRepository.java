@@ -16,6 +16,9 @@ public class SellingRepository {
     public void createSelling(SellingCompany sellingCompany) {
         entityManager.persist(sellingCompany);
     }
+    public void createProduct(Product product) {
+        entityManager.persist(product);
+    }
     public List<SellingCompany> getSellingCompanies() {
         TypedQuery<SellingCompany> query = entityManager.createQuery("SELECT c FROM SellingCompany c ", SellingCompany.class);
         List<SellingCompany> companies = query.getResultList();
@@ -34,5 +37,12 @@ public class SellingRepository {
         SellingCompany sellingCompany = query.getSingleResult();
         String sellingName = sellingCompany.getSellingName();
         return sellingName;
+    }
+
+    public SellingCompany getCompany(String sellingName){
+        TypedQuery<SellingCompany> query = entityManager.createQuery("SELECT s FROM SellingCompany s WHERE s.sellingName = :sellingName", SellingCompany.class);
+        query.setParameter("sellingName", sellingName);
+        SellingCompany sellingCompany = query.getSingleResult(); //selling name is unique
+        return  sellingCompany;
     }
 }

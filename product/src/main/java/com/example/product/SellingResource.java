@@ -76,4 +76,28 @@ public class SellingResource {
             jsonObjectBuilder.add("selling-name", sellingName);
         return  jsonObjectBuilder.build();
     }
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Path("/products/{selling-name}")
+    public Response addProduct(
+            @PathParam("selling-name") String sellingName,
+            @FormParam("product-name") String productName,
+            @FormParam("price") Double price,
+            @FormParam("quantity") int quantity
+    ){
+        Product product = new Product();
+        product.setProductName(productName);
+        product.setPrice(price);
+        product.setQuantity(quantity);
+        product.setSellingCompany( sellingRepository.getCompany(sellingName));
+        try {
+            sellingRepository.createProduct(product);
+            Response response = Response.status(Response.Status.CREATED).build();
+            return response;
+        }
+        catch (Exception e){
+            //didn't create the user (duplicate emails)
+            return Response.status(Response.Status.CONFLICT).build();
+        }
+    }
 }

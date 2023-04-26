@@ -10,16 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80529b42-ecbb-464d-b0f3-2b7c5fee9667" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/product/CompanyProductsServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/product/YourProductsServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../credentials/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../credentials/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../credentials/src/main/java/com/example/credentials/userResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../credentials/src/main/java/com/example/credentials/userResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../order/src/main/java/com/example/order/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/UserResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/product/NewProductServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SellingCompanyHomepageServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/SellingCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SellingCompany.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/SellingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SellingRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/SellingResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SellingResource.java" afterDir="false" />
     </list>
@@ -160,7 +152,7 @@
       <updated>1682128585640</updated>
       <workItem from="1682128586676" duration="6239000" />
       <workItem from="1682371108750" duration="631000" />
-      <workItem from="1682374279419" duration="15245000" />
+      <workItem from="1682374279419" duration="17986000" />
     </task>
     <servers />
   </component>
