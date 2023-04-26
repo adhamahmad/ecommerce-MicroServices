@@ -1,6 +1,7 @@
 package com.example.order;
 
 import jakarta.ejb.EJB;
+import jakarta.ejb.Singleton;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;

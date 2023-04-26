@@ -1,16 +1,22 @@
 package com.example.credentials;
 
 import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ResourceBundle;
 
+@Stateless
 @Path("/users")
 public class userResource {
 
@@ -55,21 +61,35 @@ public class userResource {
         @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
         public Response loginUser(@FormParam("account-type") String accountType,
                                   @FormParam("email") String email,
-                                  @FormParam("password") String password){
+                                  @FormParam("password") String password) throws IOException, InterruptedException {
             if(userRepository.login(email, password,accountType)) {
                 //redirect based on account type
+                URI uri = null;
                 switch (accountType) {
                     case "customer":
                         //TODO
                         break;
                     case "selling":
-                        //TODO
-                        break;
+                        String url = "http://localhost:6082/product-1.0-SNAPSHOT/api/selling/"+email;
+                        HttpClient httpClient = HttpClient.newBuilder().build();
+                        HttpRequest request = HttpRequest.newBuilder()
+                                .GET()
+                                .uri(URI.create(url))
+                                .build();
+                        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+                        // Parse the response body into a JsonObject
+                        JsonObject jsonObject = Json.createReader(new StringReader(response.body())).readObject();
+
+                        // Extract the "selling-name" value
+                        String sellingName = jsonObject.getString("selling-name");
+
+                        uri = URI.create("http://localhost:6082/product-1.0-SNAPSHOT/sellingCompanyHomepage-servlet?sellingName="+sellingName);
+                        return Response.seeOther(uri).build();
                     case "shipping":
                         //TODO
                         break;
                     default: //Admin
-                        URI uri = URI.create("http://localhost:8080/credentials-1.0-SNAPSHOT/adminHomepage-servlet");
+                        uri = URI.create("http://localhost:8080/credentials-1.0-SNAPSHOT/adminHomepage-servlet");
                         return Response.seeOther(uri).build();
                 }
             }
