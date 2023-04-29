@@ -25,4 +25,22 @@ public class OrderRepository {
         List<User> users = query.getResultList();
         return users;
     }
+
+    public void createCart(Cart cart) {
+        entityManager.persist(cart);
+    }
+
+    public User getUserByemail(String email) {
+        TypedQuery<User> query = entityManager.createQuery("SELECT c FROM User c WHERE c.email = :email ", User.class);
+        query.setParameter("email", email);
+        User user = query.getSingleResult();
+        return user;
+    }
+
+    public List<Integer> getUserCart(String email) {
+        TypedQuery<Integer> query = entityManager.createQuery("SELECT c.productId FROM Cart c WHERE c.user.email = :email ", Integer.class);
+        query.setParameter("email", email);
+        List<Integer> productIds = query.getResultList();
+        return productIds;
+    }
 }

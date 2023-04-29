@@ -67,8 +67,8 @@ public class userResource {
                 URI uri = null;
                 switch (accountType) {
                     case "customer":
-                        //TODO
-                        break;
+                        uri = URI.create("http://localhost:7082/order-1.0-SNAPSHOT/customerHomepage-servlet?email="+email);
+                        return Response.seeOther(uri).build();
                     case "selling":
                         String url = "http://localhost:6082/product-1.0-SNAPSHOT/api/selling/"+email;
                         HttpClient httpClient = HttpClient.newBuilder().build();

@@ -25,7 +25,7 @@ public class SellingRepository {
         return companies;
     }
     public List<Product> getCompanyProducts(String sellingName) {
-        TypedQuery<Product> query = entityManager.createQuery("SELECT c FROM Product c WHERE c.sellingCompany.sellingName = :sellingName AND c.quantity >0", Product.class);
+        TypedQuery<Product> query = entityManager.createQuery("SELECT c FROM Product c WHERE c.sellingCompany.sellingName = :sellingName", Product.class);
         query.setParameter("sellingName", sellingName);
         List<Product> products = query.getResultList();
         return products;
@@ -44,5 +44,18 @@ public class SellingRepository {
         query.setParameter("sellingName", sellingName);
         SellingCompany sellingCompany = query.getSingleResult(); //selling name is unique
         return  sellingCompany;
+    }
+
+    public List<Product> getProducts() {
+        TypedQuery<Product> query = entityManager.createQuery("SELECT c FROM Product c ", Product.class);
+        List<Product> products = query.getResultList();
+        return products;
+    }
+
+    public Product getProductDetails(int productId) {
+        TypedQuery<Product> query = entityManager.createQuery("SELECT s FROM Product s WHERE s.productId = :productId", Product.class);
+        query.setParameter("productId", productId);
+        Product product = query.getSingleResult(); //selling name is unique
+        return  product;
     }
 }

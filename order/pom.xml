@@ -40,7 +40,28 @@
         <artifactId>junit-jupiter-engine</artifactId>
         <version>${junit.version}</version>
         <scope>test</scope>
-      </dependency>      </dependencies>
+      </dependency>
+      <dependency>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+          <version>2.10.1</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.14.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.bitbucket.b_c</groupId>
+          <artifactId>jose4j</artifactId>
+          <version>0.9.3</version>
+      </dependency>
+      <dependency>
+          <groupId>com.googlecode.java-bit-arrays</groupId>
+          <artifactId>java-bit-arrays</artifactId>
+          <version>1.0.1</version>
+      </dependency>
+  </dependencies>
 
   <build>
         <plugins>

@@ -1,11 +1,7 @@
 package com.example.order;
 
 import jakarta.ejb.EJB;
-import jakarta.ejb.Singleton;
-import jakarta.json.Json;
-import jakarta.json.JsonArray;
-import jakarta.json.JsonArrayBuilder;
-import jakarta.json.JsonObjectBuilder;
+import jakarta.json.*;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -50,6 +46,34 @@ public class UserResource {
             jsonObjectBuilder.add("name", user.getName());
             jsonObjectBuilder.add("email", user.getEmail());
             jsonObjectBuilder.add("location", user.getLocation());
+            jsonArrayBuilder.add(jsonObjectBuilder.build());
+        }
+        JsonArray jsonArray = jsonArrayBuilder.build();
+        return  jsonArray;
+    }
+
+    @GET
+    @Path("/location/{email}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonObject getUserLocation(
+            @PathParam("email") String email
+    ){
+        String location = orderRepository.getUserByemail(email).getLocation();
+        JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        jsonObjectBuilder.add("location", location);
+        return  jsonObjectBuilder.build();
+    }
+    @GET
+    @Path("/cart/{email}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonArray getUserCart(
+            @PathParam("email") String email
+    ){
+        List<Integer> productIds = orderRepository.getUserCart(email);
+        JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
+        for (Integer id : productIds) {
+            JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+            jsonObjectBuilder.add("product-id", id);
             jsonArrayBuilder.add(jsonObjectBuilder.build());
         }
         JsonArray jsonArray = jsonArrayBuilder.build();

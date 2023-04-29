@@ -52,4 +52,21 @@ public class ShippingResource {
         JsonArray jsonArray = jsonArrayBuilder.build();
         return  jsonArray;
     }
+
+    @GET
+    @Path("/accounts/{region}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonArray getShippingCompanies(
+            @PathParam("region") String region
+    ){
+        List<ShippingCompany> companies = shippingRepository.getShippingCompanies(region);
+        JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
+        for (ShippingCompany company : companies) {
+            JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+            jsonObjectBuilder.add("shipping-name", company.getShippingName());
+            jsonArrayBuilder.add(jsonObjectBuilder.build());
+        }
+        JsonArray jsonArray = jsonArrayBuilder.build();
+        return  jsonArray;
+    }
 }

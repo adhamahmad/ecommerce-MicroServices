@@ -19,6 +19,17 @@ public class User{
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
 
+    public List<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
+    }
+
+    @OneToMany(mappedBy = "user")
+    private List<Cart> carts;
+
     public List<Order> getOrders() {
         return orders;
     }

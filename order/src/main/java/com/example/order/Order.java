@@ -8,10 +8,26 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order-id")
-    private Long orderId;
+    private int orderId;
 
-    @Column(name = "product-id")
-    private Long productId;
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getProductId() {
+        return productsId;
+    }
+
+    public void setProductId(String productId) {
+        this.productsId = productId;
+    }
+
+    @Column(name = "products-id")
+    private String productsId;
 
     @ManyToOne
     @JoinColumn(name = "user-email", referencedColumnName = "email")
@@ -20,24 +36,7 @@ public class Order {
     @Column(name = "shipping-name")
     private String shippingName;
 
-    @Column(name = "quantity-purchased")
-    private Integer quantityPurchased;
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
 
     public User getUser() {
         return user;
@@ -53,14 +52,6 @@ public class Order {
 
     public void setShippingName(String shippingName) {
         this.shippingName = shippingName;
-    }
-
-    public Integer getQuantityPurchased() {
-        return quantityPurchased;
-    }
-
-    public void setQuantityPurchased(Integer quantityPurchased) {
-        this.quantityPurchased = quantityPurchased;
     }
 
     public Integer getOrderAmount() {

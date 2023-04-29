@@ -16,9 +16,6 @@ public class Product {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "quantity")
-    private int quantity;
-
     public int getProductId() {
         return productId;
     }
@@ -41,14 +38,6 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public SellingCompany getSellingCompany() {

@@ -58,7 +58,24 @@ public class SellingResource {
             JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
             jsonObjectBuilder.add("product-name", product.getProductName());
             jsonObjectBuilder.add("price", product.getPrice());
-            jsonObjectBuilder.add("quantity", product.getQuantity());
+            jsonArrayBuilder.add(jsonObjectBuilder.build());
+        }
+        JsonArray jsonArray = jsonArrayBuilder.build();
+        return  jsonArray;
+    }
+
+    @GET
+    @Path("/products")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonArray getCompanyProducts(
+    ){
+        List<Product> products = sellingRepository.getProducts();
+        JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
+        for (Product product : products) {
+            JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+            jsonObjectBuilder.add("product-name", product.getProductName());
+            jsonObjectBuilder.add("price", product.getPrice());
+            jsonObjectBuilder.add("product-id", product.getProductId());
             jsonArrayBuilder.add(jsonObjectBuilder.build());
         }
         JsonArray jsonArray = jsonArrayBuilder.build();
@@ -72,8 +89,34 @@ public class SellingResource {
             @PathParam("email") String email
     ){
         String sellingName = sellingRepository.getCompanyName(email);
-            JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
-            jsonObjectBuilder.add("selling-name", sellingName);
+        JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        jsonObjectBuilder.add("selling-name", sellingName);
+        return  jsonObjectBuilder.build();
+    }
+
+    @GET
+    @Path("/product/{product-id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonObject getProductDetails(
+            @PathParam("product-id") int productId
+    ){
+        Product product = sellingRepository.getProductDetails(productId);
+        JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        jsonObjectBuilder.add("selling-name", product.getSellingCompany().getSellingName());
+        jsonObjectBuilder.add("product-name", product.getProductName());
+        jsonObjectBuilder.add("price", product.getPrice());
+        return  jsonObjectBuilder.build();
+    }
+
+    @GET
+    @Path("/price/{product-id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonObject getProductPrice(
+            @PathParam("product-id") int productId
+    ){
+        Product product = sellingRepository.getProductDetails(productId);
+        JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        jsonObjectBuilder.add("price", product.getPrice());
         return  jsonObjectBuilder.build();
     }
     @POST
@@ -88,7 +131,6 @@ public class SellingResource {
         Product product = new Product();
         product.setProductName(productName);
         product.setPrice(price);
-        product.setQuantity(quantity);
         product.setSellingCompany( sellingRepository.getCompany(sellingName));
         try {
             sellingRepository.createProduct(product);

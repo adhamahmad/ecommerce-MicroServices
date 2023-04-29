@@ -22,4 +22,11 @@ public class ShippingRepository {
         return companies;
     }
 
+    public List<ShippingCompany> getShippingCompanies(String location) {
+        TypedQuery<ShippingCompany> query = entityManager.createQuery("SELECT c FROM ShippingCompany c WHERE CONCAT(',', c.supportedRegions, ',') LIKE :location", ShippingCompany.class);
+        query.setParameter("location", "%," + location + ",%");
+        List<ShippingCompany> shippingCompanies = query.getResultList();
+        return  shippingCompanies;
+    }
+
 }

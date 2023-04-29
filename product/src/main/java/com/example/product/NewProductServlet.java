@@ -22,9 +22,6 @@ public class NewProductServlet extends HttpServlet {
                 "  <label for=\"price\">Price:</label>\n" +
                 "  <input id=\"price\" name=\"price\" type=\"number\" step=\"any\" min=\"0\" required>\n" +
                 "  <br>\n" +
-                "  <label for=\"quantity\">Quantity:</label>\n" +
-                "  <input id=\"quantity\" name=\"quantity\" type=\"number\" step=\"1\" min=\"0\" required>\n" +
-                "  <br>\n" +
                 "  <button type=\"submit\">Add product</button>\n" +
                 "</form>");
     }
