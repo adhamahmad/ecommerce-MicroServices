@@ -61,6 +61,11 @@
           <artifactId>java-bit-arrays</artifactId>
           <version>1.0.1</version>
       </dependency>
+      <dependency>
+          <groupId>org.robolectric</groupId>
+          <artifactId>android-all</artifactId>
+          <version>4.1.2_r1-robolectric-r1</version>
+      </dependency>
   </dependencies>
 
   <build>

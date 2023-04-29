@@ -24,11 +24,9 @@ import java.util.List;
 
 @WebServlet(name = "processShippingServlet", value = "/processShipping-servlet")
 public class ProcessShippingServlet extends HttpServlet {
-    @EJB
-    private OrderRepository orderRepository = new OrderRepository();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email"); //TODO ab3t el email
-        String shippingName = request.getParameter("shippingName"); //TODO ab3t el shipping name
+        String email = request.getParameter("email");
+        String shippingName = request.getParameter("shippingName");
         // API retrieve productIds
         String apiUrl = "http://localhost:7082/order-1.0-SNAPSHOT/api/user/cart/" + email;
         String jsonStr;
@@ -48,17 +46,12 @@ public class ProcessShippingServlet extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        // create a new order object
-        Order order = new Order();
-        order.setProductId(productIds);
-        order.setShippingName(shippingName);
-        order.setOrderAmount((int) totalPrice);
-        order.setOrderStatus("on hold");
-        order.setUser(orderRepository.getUserByemail(email));
+
         //JSP page to show all this info
-        request.setAttribute("totalPrice", order.getOrderAmount());
-        request.setAttribute("shippingName", order.getShippingName());
-        request.setAttribute("status", order.getOrderStatus());
+        request.setAttribute("totalPrice", (int) totalPrice);
+        request.setAttribute("shippingName", shippingName);
+        request.setAttribute("productIds",productIds);
+        request.setAttribute("status", "on hold");
         //get product details
         List<List<Object>> productDetailsList = new ArrayList<>();
         Client client = ClientBuilder.newClient();
@@ -75,8 +68,6 @@ public class ProcessShippingServlet extends HttpServlet {
         }
         request.setAttribute("productDetailsList", productDetailsList);
         request.getRequestDispatcher("/order-summary.jsp").forward(request, response);
-
-        //TODO persist el order (stateful)
     }
     private static String getJsonString(String apiUrl) throws Exception {
         URL url = new URL(apiUrl);

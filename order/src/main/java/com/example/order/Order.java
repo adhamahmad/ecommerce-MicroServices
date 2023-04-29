@@ -3,11 +3,11 @@ package com.example.order;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "order")
+@Table(name = "`order`")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order-id")
+    @Column(name = "`order-id`")
     private int orderId;
 
     public int getOrderId() {
@@ -26,14 +26,14 @@ public class Order {
         this.productsId = productId;
     }
 
-    @Column(name = "products-id")
+    @Column(name = "`products-id`")
     private String productsId;
 
     @ManyToOne
-    @JoinColumn(name = "user-email", referencedColumnName = "email")
+    @JoinColumn(name = "`user-email`", referencedColumnName = "email")
     private User user;
 
-    @Column(name = "shipping-name")
+    @Column(name = "`shipping-name`")
     private String shippingName;
 
 
@@ -70,9 +70,9 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    @Column(name = "order-amount")
+    @Column(name = "`order-amount`")
     private Integer orderAmount;
 
-    @Column(name = "order-status")
+    @Column(name = "`order-status`")
     private String orderStatus;
 }

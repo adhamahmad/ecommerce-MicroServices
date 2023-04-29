@@ -4,6 +4,7 @@ package com.example.order;
 import jakarta.ejb.Singleton;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 import java.util.List;
@@ -42,5 +43,10 @@ public class OrderRepository {
         query.setParameter("email", email);
         List<Integer> productIds = query.getResultList();
         return productIds;
+    }
+    public void cartReset(String email) {
+        Query query = entityManager.createQuery("DELETE FROM Cart c WHERE c.user.email = :email");
+        query.setParameter("email", email);
+        query.executeUpdate();
     }
 }

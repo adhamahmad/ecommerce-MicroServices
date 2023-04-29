@@ -13,14 +13,15 @@ public class UserResource {
 
     @EJB
     private OrderRepository orderRepository = new OrderRepository();
+
     @POST
     @Path("/register/{name}/{location}/{email}")
     public Response registerShipping(
             @PathParam("name") String name,
             @PathParam("email") String email,
             @PathParam("location") String location
-    ){
-        User user  = new User();
+    ) {
+        User user = new User();
         user.setEmail(email);
         user.setName(name);
         user.setLocation(location);
@@ -28,8 +29,7 @@ public class UserResource {
             orderRepository.createUser(user);
             Response response = Response.status(Response.Status.CREATED).build();
             return response;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             //didn't create the user (duplicate emails)
             return Response.status(Response.Status.CONFLICT).build();
         }
@@ -38,7 +38,7 @@ public class UserResource {
     @GET
     @Path("/accounts")
     @Produces(MediaType.APPLICATION_JSON)
-    public JsonArray getCustomerAccounts(){
+    public JsonArray getCustomerAccounts() {
         List<User> users = orderRepository.getUsers();
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
         for (User user : users) {
@@ -49,7 +49,7 @@ public class UserResource {
             jsonArrayBuilder.add(jsonObjectBuilder.build());
         }
         JsonArray jsonArray = jsonArrayBuilder.build();
-        return  jsonArray;
+        return jsonArray;
     }
 
     @GET
@@ -57,18 +57,41 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public JsonObject getUserLocation(
             @PathParam("email") String email
-    ){
+    ) {
         String location = orderRepository.getUserByemail(email).getLocation();
         JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
         jsonObjectBuilder.add("location", location);
-        return  jsonObjectBuilder.build();
+        return jsonObjectBuilder.build();
     }
+
     @GET
-    @Path("/cart/{email}")
+    @Path("/order/{email}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonArray getUserOrders(
+            @PathParam("email") String email
+    ) {
+        List<Order> orders = orderRepository.getUserByemail(email).getOrders();
+        JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
+        for (Order order : orders) {
+            JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+            jsonObjectBuilder.add("order-id", order.getOrderId());
+            jsonObjectBuilder.add("products-id", order.getProductId());
+            jsonObjectBuilder.add("user-email", email);
+            jsonObjectBuilder.add("shipping-name", order.getShippingName());
+            jsonObjectBuilder.add("order-amount", order.getOrderAmount());
+            jsonObjectBuilder.add("order-status", order.getOrderStatus());
+            jsonArrayBuilder.add(jsonObjectBuilder.build());
+        }
+        JsonArray jsonArray = jsonArrayBuilder.build();
+        return jsonArray;
+    }
+
+    @GET
+    @Path("/orders/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public JsonArray getUserCart(
             @PathParam("email") String email
-    ){
+    ) {
         List<Integer> productIds = orderRepository.getUserCart(email);
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
         for (Integer id : productIds) {
@@ -77,6 +100,19 @@ public class UserResource {
             jsonArrayBuilder.add(jsonObjectBuilder.build());
         }
         JsonArray jsonArray = jsonArrayBuilder.build();
-        return  jsonArray;
+        return jsonArray;
+    }
+
+    @PUT
+    @Path("/cart/{email}")
+    public Response resetCart(
+            @PathParam("email") String email
+    ) {
+        try {
+            orderRepository.cartReset(email);
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        return Response.ok().build();
     }
 }

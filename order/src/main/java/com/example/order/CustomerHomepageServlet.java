@@ -24,6 +24,7 @@ public class CustomerHomepageServlet extends HttpServlet {
         out.println("<p>Please choose one of the following options:</p>");
         out.println("<ul>");
         out.println("<li><a href=\"" + request.getContextPath() + "/products?email=" + email + "\">Make a new order</a></li>");
+        out.println("<li><a href=\"" + request.getContextPath() + "/myOrders-servlet?email=" + email + "\">See your orders</a></li>");
         out.println("</ul>");
         out.println("</body>");
         out.println("</html>");
