@@ -10,18 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80529b42-ecbb-464d-b0f3-2b7c5fee9667" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/CheckoutServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/MyOrdersServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/OrderResource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../order/src/main/webapp/myOrders.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../order/src/main/webapp/result.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../order/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../order/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../order/src/main/java/com/example/order/CustomerHomepageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/CustomerHomepageServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../order/src/main/java/com/example/order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SoldProductsServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/soldProducts.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../order/src/main/java/com/example/order/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../order/src/main/java/com/example/order/ProcessShippingServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/ProcessShippingServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../order/src/main/java/com/example/order/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../order/src/main/java/com/example/order/UserResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/NewProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/NewProductServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/SellingCompanyHomepageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SellingCompanyHomepageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/product/SellingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/product/SellingRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -161,7 +159,7 @@
       <workItem from="1682128586676" duration="6239000" />
       <workItem from="1682371108750" duration="631000" />
       <workItem from="1682374279419" duration="19370000" />
-      <workItem from="1682565277939" duration="17324000" />
+      <workItem from="1682565277939" duration="23310000" />
     </task>
     <servers />
   </component>

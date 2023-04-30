@@ -87,6 +87,28 @@ public class UserResource {
     }
 
     @GET
+    @Path("/company/{product-id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonArray getCompanyOrders(
+            @PathParam("product-id")  int productId
+    ) {
+        List<Order> orders = orderRepository.getCompanyOrders(productId);
+        JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
+        for (Order order : orders) {
+            JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+            jsonObjectBuilder.add("order-id", order.getOrderId());
+            jsonObjectBuilder.add("product-id", productId); //product id company already sent
+            jsonObjectBuilder.add("shipping-name", order.getShippingName());
+            jsonObjectBuilder.add("user-email", order.getUser().getEmail());
+            jsonObjectBuilder.add("user-name", order.getUser().getName());
+            jsonObjectBuilder.add("location", order.getUser().getLocation());
+            jsonArrayBuilder.add(jsonObjectBuilder.build());
+        }
+        JsonArray jsonArray = jsonArrayBuilder.build();
+        return jsonArray;
+    }
+
+    @GET
     @Path("/orders/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public JsonArray getUserCart(

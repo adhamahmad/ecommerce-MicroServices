@@ -49,4 +49,11 @@ public class OrderRepository {
         query.setParameter("email", email);
         query.executeUpdate();
     }
+
+    public List<Order> getCompanyOrders(int productId) {
+        TypedQuery<Order> query = entityManager.createQuery("SELECT c FROM Order c WHERE CONCAT(',', c.productsId, ',') LIKE :productId", Order.class);
+        query.setParameter("productId", "%," + productId + ",%");
+        List<Order> companyOrders = query.getResultList();
+        return  companyOrders;
+    }
 }

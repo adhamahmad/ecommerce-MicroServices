@@ -14,7 +14,6 @@ public class NewProductServlet extends HttpServlet {
         String sellingName = request.getParameter("sellingName");
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        //TODO call the correct api
         out.println("<form action=\"/product-1.0-SNAPSHOT/api/selling/products/" + sellingName + "\" method=\"POST\">"+
                 "  <label for=\"product-name\">Product name:</label>\n" +
                 "  <input id=\"product-name\" name=\"product-name\" type=\"product-name\" required>\n" +

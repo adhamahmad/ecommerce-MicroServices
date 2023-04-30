@@ -1,6 +1,5 @@
 package com.example.product;
 
-import jakarta.ejb.Singleton;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -29,6 +28,13 @@ public class SellingRepository {
         query.setParameter("sellingName", sellingName);
         List<Product> products = query.getResultList();
         return products;
+    }
+
+    public List<Integer> getCompanyProductsIds(String sellingName) {
+        TypedQuery<Integer> query = entityManager.createQuery("SELECT c.productId FROM Product c WHERE c.sellingCompany.sellingName = :sellingName", Integer.class);
+        query.setParameter("sellingName", sellingName);
+        List<Integer> productIds = query.getResultList();
+        return productIds;
     }
 
     public String  getCompanyName(String email) {
