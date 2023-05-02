@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <!-- product-list.jsp -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
   <title>Product List</title>
@@ -24,5 +25,7 @@
   <% } %>
 </ul>
 <a href="http://localhost:7082/order-1.0-SNAPSHOT/chooseShipping-servlet?email=<%=email%>">Choose shipping company</a>
+</br>
+<a href="http://localhost:9999/notifications?email=<%=email%>">Shipping notifications</a>
 </body>
 </html>

@@ -2,6 +2,8 @@ package com.example.shipping;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "`shipping-company`")
 public class ShippingCompany {
@@ -13,6 +15,17 @@ public class ShippingCompany {
 
     @Column(name = "`supported-regions`")
     private String supportedRegions;
+
+    @OneToMany(mappedBy = "shippingCompany")
+    private List<ShippingRequest> shippingRequests;
+
+    public List<ShippingRequest> getShippingRequests() {
+        return shippingRequests;
+    }
+
+    public void setShippingRequests(List<ShippingRequest> shippingRequests) {
+        this.shippingRequests = shippingRequests;
+    }
 
     public String getShippingName() {
         return shippingName;

@@ -45,7 +45,6 @@ public class CartServlet extends HttpServlet {
 //        Map<String, Object> product = gson.fromJson(json, productType);
 
         // Add the product to the user's cart (entry in db with product id and user email)
-        // TODO
             Cart cart = new Cart();
             cart.setProductId(productIdInt);
             cart.setUser(orderRepository.getUserByemail(email));

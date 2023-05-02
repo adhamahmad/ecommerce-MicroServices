@@ -37,9 +37,12 @@ public class OrderResource {
             }
         return Response.ok().build();
     }
+
+
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     private void processOrder(Order order) throws Exception {
         order.setOrderStatus("pending shipment");
         orderRepository.createOrder(order);
+        orderRepository.flushEntityManager();
     }
 }

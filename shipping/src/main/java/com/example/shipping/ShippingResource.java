@@ -34,6 +34,25 @@ public class ShippingResource {
             return Response.status(Response.Status.CONFLICT).build();
         }
     }
+    @POST
+    @Path("/request/{shipping-name}/{orderId}")
+    public Response newRequest(
+            @PathParam("shipping-name") String shippingName,
+            @PathParam("orderId") int orderId
+    ){
+        ShippingRequest shippingRequest = new ShippingRequest();
+        shippingRequest.setShippingCompany(shippingRepository.getShippingCompany(shippingName));
+        shippingRequest.setOrderId(orderId);
+        try {
+            shippingRepository.createRequest(shippingRequest);
+            Response response = Response.status(Response.Status.CREATED).build();
+            return response;
+        }
+        catch (Exception e){
+            //didn't create
+            return Response.status(Response.Status.CONFLICT).build();
+        }
+    }
 
 
     @GET
@@ -51,6 +70,18 @@ public class ShippingResource {
         }
         JsonArray jsonArray = jsonArrayBuilder.build();
         return  jsonArray;
+    }
+
+    @Path("/{email}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    public JsonObject getShippingName(
+            @PathParam("email") String email
+    ) {
+        String shippingName = shippingRepository.getShippingName(email);
+        JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        jsonObjectBuilder.add("shippingName", shippingName);
+        return jsonObjectBuilder.build();
     }
 
     @GET

@@ -86,8 +86,21 @@ public class userResource {
                         uri = URI.create("http://localhost:6082/product-1.0-SNAPSHOT/sellingCompanyHomepage-servlet?sellingName="+sellingName);
                         return Response.seeOther(uri).build();
                     case "shipping":
-                        //TODO
-                        break;
+                        String url2 = "http://localhost:5090/shipping-1.0-SNAPSHOT/api/shipping/"+email;
+                        HttpClient httpClient2 = HttpClient.newBuilder().build();
+                        HttpRequest request2 = HttpRequest.newBuilder()
+                                .GET()
+                                .uri(URI.create(url2))
+                                .build();
+                        HttpResponse<String> response2 = httpClient2.send(request2, HttpResponse.BodyHandlers.ofString());
+                        // Parse the response body into a JsonObject
+                        JsonObject jsonObject2 = Json.createReader(new StringReader(response2.body())).readObject();
+
+                        // Extract the "selling-name" value
+                        String shippingName = jsonObject2.getString("shippingName");
+                        uri = URI.create("http://localhost:5090/shipping-1.0-SNAPSHOT/shippingCompanyHomepage-servlet?shippingName="+shippingName);
+                        return Response.seeOther(uri).build();
+                        //TODO pass to the shipping homepage the shipping-name
                     default: //Admin
                         uri = URI.create("http://localhost:8080/credentials-1.0-SNAPSHOT/adminHomepage-servlet");
                         return Response.seeOther(uri).build();

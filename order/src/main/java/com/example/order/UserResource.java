@@ -53,9 +53,21 @@ public class UserResource {
     }
 
     @GET
+    @Path("/{orderId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonObject getUserEmail(
+            @PathParam("orderId") int orderId
+    ) {
+        String email = orderRepository.getUserEmail(orderId);
+        JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        jsonObjectBuilder.add("email", email);
+        return jsonObjectBuilder.build();
+    }
+
+    @GET
     @Path("/location/{email}")
     @Produces(MediaType.APPLICATION_JSON)
-    public JsonObject getUserLocation(
+    public JsonObject getUserEmail(
             @PathParam("email") String email
     ) {
         String location = orderRepository.getUserByemail(email).getLocation();
@@ -70,7 +82,8 @@ public class UserResource {
     public JsonArray getUserOrders(
             @PathParam("email") String email
     ) {
-        List<Order> orders = orderRepository.getUserByemail(email).getOrders();
+//        List<Order> orders = orderRepository.getUserByemail(email).getOrders();
+        List<Order> orders = orderRepository.getUserOrders(email);
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
         for (Order order : orders) {
             JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
@@ -109,7 +122,7 @@ public class UserResource {
     }
 
     @GET
-    @Path("/orders/{email}")
+    @Path("/cart/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public JsonArray getUserCart(
             @PathParam("email") String email
@@ -124,6 +137,7 @@ public class UserResource {
         JsonArray jsonArray = jsonArrayBuilder.build();
         return jsonArray;
     }
+
 
     @PUT
     @Path("/cart/{email}")

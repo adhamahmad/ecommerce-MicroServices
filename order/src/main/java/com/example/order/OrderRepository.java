@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class OrderRepository {
     @PersistenceContext(unitName = "buy2buy-order")
     private EntityManager entityManager;
-
+    @Transactional
     public void createOrder(Order order) {
         entityManager.persist(order);
     }
@@ -55,5 +56,33 @@ public class OrderRepository {
         query.setParameter("productId", "%," + productId + ",%");
         List<Order> companyOrders = query.getResultList();
         return  companyOrders;
+    }
+    public List<Order> getUserOrders(String email) {
+        // Create a new EntityManager instance
+        EntityManager newEntityManager = entityManager.getEntityManagerFactory().createEntityManager();
+
+        TypedQuery<Order> query = newEntityManager.createQuery("SELECT c FROM Order c WHERE c.user.email = :email", Order.class);
+        query.setParameter("email",email);
+        List<Order> userOrders = query.getResultList();
+        return  userOrders;
+    }
+    public int getLastOrderId(String email) { //get last order id to make a shipping request
+        User user = getUserByemail(email);
+        List<Order> userOrders = user.getOrders();
+        Order lastOrder = userOrders.get(userOrders.size() - 1);
+        int lastOrderId = lastOrder.getOrderId();
+        return  lastOrderId;
+    }
+
+    @Transactional
+    public void flushEntityManager() {
+        entityManager.flush();
+    }
+
+    public String getUserEmail(int orderId) {
+        TypedQuery<String> query = entityManager.createQuery("SELECT c.user.email FROM Order c WHERE c.orderId = :orderId", String.class);
+        query.setParameter("orderId",orderId);
+        String email = query.getSingleResult();
+        return email;
     }
 }
